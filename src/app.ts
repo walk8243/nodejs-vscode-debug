@@ -23,6 +23,9 @@ app.use((req, res, next) => {
 app
 	.get('/', (req, res, next) => {
 		res.send('nodejs-vscode-debug');
+	})
+	.post('/', (req, res, next) => {
+		res.send('nodejs-vscode-debug');
 	});
 
 app

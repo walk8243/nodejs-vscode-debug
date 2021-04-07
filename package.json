@@ -5,13 +5,12 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc --sourceMap false --removeComments true",
-    "build-debug": "tsc --build",
-    "clean": "tsc --build --clean",
-    "debug": "npm run build-debug && npm run debug:compose && npm run debug:start",
+    "clean": "rm -rf dist",
+    "debug": "npm run debug:build && npm run debug:compose && npm run debug:start",
+    "debug:build": "tsc --build",
     "debug:compose": "docker-compose up -d --build --force-recreate",
-    "debug:start": "docker exec -d nodejs-vscode-debug.worker npm run start-debug",
+    "debug:start": "docker exec -d nodejs-vscode-debug.worker node --inspect=0.0.0.0 dist/server.js",
     "start": "node .",
-    "start-debug": "node --inspect=0.0.0.0 .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-watch"
   },
