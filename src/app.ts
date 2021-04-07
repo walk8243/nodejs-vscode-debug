@@ -8,6 +8,18 @@ app
 	.use(express.json())
 	.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+	console.log(JSON.stringify({
+		protocol: req.protocol,
+		hostname: req.hostname,
+		method: req.method,
+		path: req.path,
+		query: req.query,
+		body: req.body,
+	}));
+	next();
+});
+
 app
 	.get('/', (req, res, next) => {
 		res.send('nodejs-vscode-debug');
